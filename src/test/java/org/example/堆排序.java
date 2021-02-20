@@ -44,7 +44,7 @@ public class 堆排序 {
             int pVal = nums[parent]; //父节点的值
             if (leftChild < end) { //存在右节点
                 int p = nums[leftChild] >= nums[rightChild] ? leftChild : rightChild; //选取左右节点中值最大的节点
-                if (nums[parent] < nums[p]) { //如果父节点小于其任意子节点则交换
+                if (pVal < nums[p]) { //如果父节点小于其任意子节点则交换
                     swap(nums, parent, p);
                     parent = p; //父节点再次尝试下沉
                     continue;
