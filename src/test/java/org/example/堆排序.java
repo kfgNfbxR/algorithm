@@ -7,15 +7,34 @@ import java.util.Arrays;
  */
 public class 堆排序 {
 
+    static final int MAXIMUM_CAPACITY = 1 << 30;
+
     public static void main(String[] args) {
-        int[] nums = new int[]{123, 4343, 2, 47, 8, 99, 12, 43356, 74, 3, 543212};
-        heapify(nums);
-        System.out.println(Arrays.toString(nums));
-        for (int i = nums.length - 1; i > 0; i--) {
-            swap(nums, 0, i);
-            siftDown(nums, 0, i - 1);
-        }
-        System.out.println(Arrays.toString(nums));
+//        int[] nums = new int[]{123, 4343, 2, 47, 8, 99, 12, 43356, 74, 3, 543212};
+//        heapify(nums);
+//        System.out.println(Arrays.toString(nums));
+//        for (int i = nums.length - 1; i > 0; i--) {
+//            swap(nums, 0, i);
+//            siftDown(nums, 0, i - 1);
+//        }
+//        System.out.println(Arrays.toString(nums));
+        System.out.println(Integer.toBinaryString(tableSizeFor(3)));
+    }
+
+    static final int tableSizeFor(int cap) {
+        int n = cap - 1;
+        System.out.println(Integer.toBinaryString(n));
+        n |= n >>> 1;
+        System.out.println(Integer.toBinaryString(n));
+        n |= n >>> 2;
+        System.out.println(Integer.toBinaryString(n));
+        n |= n >>> 4;
+        System.out.println(Integer.toBinaryString(n));
+        n |= n >>> 8;
+        System.out.println(Integer.toBinaryString(n));
+        n |= n >>> 16;
+        System.out.println(Integer.toBinaryString(n));
+        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 
     /**

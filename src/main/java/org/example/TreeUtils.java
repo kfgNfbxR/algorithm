@@ -2,6 +2,11 @@ package org.example;
 
 import org.example.model.TreeNode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * 二叉树工具
  *
@@ -87,7 +92,36 @@ public class TreeUtils {
      * @param root 更节点
      * @param <E>  元素类型
      */
-    public <E> void breadthPrint(TreeNode<E> root) {
+    public static  <E> void breadthPrint(TreeNode<E> root) {
+
+        Queue<TreeNode<E>> queue = new LinkedList<>();
+        int layerNum = 1;
+        int nextLayer = 0;
+        queue.add(root);
+        List<E> list = new ArrayList<>();
+
+        do {
+
+            TreeNode<E> treeNode = queue.poll();
+            list.add(treeNode.getElement());
+            if (treeNode.getLeftChild() != null) {
+                queue.add(treeNode.getLeftChild());
+                nextLayer ++;
+            }
+            if (treeNode.getRightChild() != null) {
+                queue.add(treeNode.getRightChild());
+                nextLayer ++;
+            }
+
+            layerNum--;
+            if (layerNum == 0) {
+                layerNum = nextLayer;
+                nextLayer = 0;
+                System.out.println(list.toString());
+                list.clear();
+            }
+        } while (!queue.isEmpty());
+
 
     }
 }
